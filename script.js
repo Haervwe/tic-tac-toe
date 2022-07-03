@@ -24,17 +24,20 @@ const BoardFactory = (() => {
             if (current == null) {
                 let square = document.createElement("div");
                 square.id = `square${id}`;
+                square.className = "square";
                 square.innerText = "";
-                square.addEventListener("click",a.setMark(currentPlayer.mark))
+                a.mark = "";
+                square.onclick = function (){a.setMark()};
                 board.appendChild(square);
+                    
             } else {
                 current.innerText = `${a.mark}`;
             }
         }   
 
-        function setMark (playerMark){
+        function setMark (){
             if (this.mark == ""){
-                this.mark = playerMark;
+                this.mark = currentPlayer.mark;
                 if (currentPlayer == players[0]){
                     currentPlayer = players[1];
                 } else {
@@ -52,8 +55,10 @@ const BoardFactory = (() => {
 
     for (let i = 0; i < 9; i++){
         game.push(SquareFactory(i));
-        game[i].setMark("");
+        game[i].setMark();
     };
+
+
 
     return {
         game,
