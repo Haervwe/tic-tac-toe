@@ -14,10 +14,38 @@
         <div class="header">
             <h1>Tic-Tac-Toe</h1>
         </div>
-
+        <form id="playerSelection" class="playerSelection" action="" method="get">
+            <div class="gameType">
+                <button type="button" id="twoPlayers" onclick="displayTwoPlayers()">2 Players</button>
+                <button type="button" id="ai" onclick="displayOnePlayer()">Vs AI</button>
+            </div>
+            <div class="twoPNames">
+                <div class="player1input">
+                    <label for="player1">Player 1 Name:</label>
+                    <input type="text" placeholder="John" id="player1" name="player1">
+                </div>
+                <div class="player2input">
+                    <label for="player2">Player 2 Name:</label>
+                    <input type="text" placeholder="Matt" id="player2" name="player2">
+                </div>
+                <button type="button" onclick="displayGame()">Play!</button>  
+            </div>
+            <div class="onePName">
+                <div class="playerinput">
+                    <label for="player">Player Name:</label>
+                    <input type="text" placeholder="John" id="player" name="player">
+                </div>
+                <button type="button" onclick="displayGame()">Play!</button> 
+            </div>
+        </form>
         <div class="gameBoard">
+            <div class="player1">
+                <p id="player1name" class="playername"></p>
+            </div>
             <div id="board" class="board">
-
+            </div>
+            <div class="player2">
+                <p id="player2name" class="playername"></p>
             </div>
         </div>
 
@@ -25,6 +53,5 @@
             <h4>Crafted by Haervwe</h4>
         </div>
     </div>
-    
 </body>
 </html>

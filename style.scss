@@ -1,5 +1,23 @@
-.board {
+.playerSelection {
     display: grid;
-    grid-template-columns: repeat(3,minmax(250px,1fr));
-    grid-template-rows: repeat(3,minmax(250px,1fr));
+    .gameType {
+        display: grid;
+    }
+    .twoPNames{
+        display: none;
+    }
+    .onePName{
+        display: none;
+    }
 }
+
+
+.gameBoard {
+    display: none;
+    .board {
+        display: grid;
+        grid-template-columns: repeat(3,minmax(250px,1fr));
+        grid-template-rows: repeat(3,minmax(250px,1fr));
+    }
+}
+

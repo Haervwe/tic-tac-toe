@@ -1,4 +1,20 @@
-.board {
+.playerSelection {
+  display: grid;
+}
+.playerSelection .gameType {
+  display: grid;
+}
+.playerSelection .twoPNames {
+  display: none;
+}
+.playerSelection .onePName {
+  display: none;
+}
+
+.gameBoard {
+  display: none;
+}
+.gameBoard .board {
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
   grid-template-rows: repeat(3, minmax(250px, 1fr));
