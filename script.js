@@ -5,7 +5,7 @@ const BoardFactory = (() => {
     var board = document.getElementById("board");
     var game = [];
     var players = [];
-    var currentPlayer;
+    var currentPlayer = 2;
     var gameType;
 
     //player factory object
@@ -57,18 +57,19 @@ const BoardFactory = (() => {
         }   
 
         function setMark (){
+            console.log(currentPlayer);
             if (this.mark == ""){
-                if  (currentPlayer == null){
+                if  (currentPlayer == 2){
                     render(this)
                 } else {
-                    this.mark = currentPlayer.mark;
+                    this.mark = players[currentPlayer].mark;
                     render(this);
                     if (game.length == 9){
                         checkWinner();
-                        if (currentPlayer == players[0]){
-                            currentPlayer = players[1];
+                        if (currentPlayer == 0){
+                            currentPlayer = 1;
                         } else {
-                            currentPlayer = players[0];
+                            currentPlayer = 0;
                         }
                     }
                 }
@@ -90,11 +91,23 @@ const BoardFactory = (() => {
         };
     }
 
+    function resetGame () {
+        game = [];
+        board.innerHTML = "";
+        populateBoard ();
+        currentPlayer = 0;
+    };
+
     //Game  Object Pulbic Methods.
 
     function checkWinner () {
         if ((game[0].mark === game[1].mark)&&(game[1].mark === game[2].mark)&&(game[0].mark !== "")||(game[3].mark === game[4].mark)&&(game[4].mark === game[5].mark)&&(game[3].mark !== "")||(game[6].mark === game[7].mark)&&(game[7].mark === game[8].mark)&&(game[6].mark !== "")||(game[0].mark === game[4].mark)&&(game[4].mark === game[8].mark)&&(game[0].mark !== "")||(game[2].mark === game[4].mark)&&(game[4].mark === game[6].mark)&&(game[2].mark !== "")||(game[0].mark === game[3].mark)&&(game[3].mark === game[6].mark)&&(game[0].mark !== "")||(game[1].mark === game[4].mark)&&(game[4].mark === game[7].mark)&&(game[1].mark !== "")||(game[2].mark === game[5].mark)&&(game[5].mark === game[8].mark)&&(game[2].mark !== "")) {
-            console.log(currentPlayer);
+            players[currentPlayer].plusScore();
+            console.log(players[currentPlayer]);
+            resetGame();
+        }
+        if ((game[0].mark !== "")&&(game[1].mark !== "")&&(game[2].mark !== "")&&(game[3].mark !== "")&&(game[4].mark !== "")&&(game[5].mark !== "")&&(game[6].mark !== "")&&(game[7].mark !== "")&&(game[8].mark !== "")){
+            console.log("no winner");
             resetGame();
         }
     }
@@ -114,23 +127,16 @@ const BoardFactory = (() => {
         if (gameType == "ai"){
             players.push(PlayerFactory(`${form.player.value}`,"human"));
             players.push(PlayerFactory(`AI`,"ai"))
-            currentPlayer = players[0];
             
         } else {
             players.push(PlayerFactory(`${form.player1.value}`,"human"));
             players.push(PlayerFactory(`${form.player2.value}`,"human"));
-            currentPlayer = players[0];
         }
         player1name.innerText = `${players[0].name}`;
         player2name.innerText = `${players[1].name}`;
     }
 
-    function resetGame () {
-        game = [];
-        board.innerHTML = "";
-        populateBoard ();
-        currentPlayer = players[0];
-    };
+    //game first initialization
     
     resetGame();
 
