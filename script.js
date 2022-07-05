@@ -25,7 +25,7 @@ const BoardFactory = (() => {
             name = `Player ${players.length+1}`;
         }
         function plusScore (){
-            score++;
+            this.score += 1;
         }
         return {
             name,
@@ -101,11 +101,17 @@ const BoardFactory = (() => {
     //Game  Object Pulbic Methods.
 
     function checkWinner () {
+
+        //checks if theres a winner
+
         if ((game[0].mark === game[1].mark)&&(game[1].mark === game[2].mark)&&(game[0].mark !== "")||(game[3].mark === game[4].mark)&&(game[4].mark === game[5].mark)&&(game[3].mark !== "")||(game[6].mark === game[7].mark)&&(game[7].mark === game[8].mark)&&(game[6].mark !== "")||(game[0].mark === game[4].mark)&&(game[4].mark === game[8].mark)&&(game[0].mark !== "")||(game[2].mark === game[4].mark)&&(game[4].mark === game[6].mark)&&(game[2].mark !== "")||(game[0].mark === game[3].mark)&&(game[3].mark === game[6].mark)&&(game[0].mark !== "")||(game[1].mark === game[4].mark)&&(game[4].mark === game[7].mark)&&(game[1].mark !== "")||(game[2].mark === game[5].mark)&&(game[5].mark === game[8].mark)&&(game[2].mark !== "")) {
             players[currentPlayer].plusScore();
             console.log(players[currentPlayer]);
             resetGame();
         }
+
+        //checks for a tie
+
         if ((game[0].mark !== "")&&(game[1].mark !== "")&&(game[2].mark !== "")&&(game[3].mark !== "")&&(game[4].mark !== "")&&(game[5].mark !== "")&&(game[6].mark !== "")&&(game[7].mark !== "")&&(game[8].mark !== "")){
             console.log("no winner");
             resetGame();
