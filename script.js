@@ -62,12 +62,15 @@ const BoardFactory = (() => {
                     render(this)
                 } else {
                     this.mark = currentPlayer.mark;
-                    if (currentPlayer == players[0]){
-                        currentPlayer = players[1];
-                    } else {
-                        currentPlayer = players[0];
-                    }
                     render(this);
+                    if (game.length == 9){
+                        checkWinner();
+                        if (currentPlayer == players[0]){
+                            currentPlayer = players[1];
+                        } else {
+                            currentPlayer = players[0];
+                        }
+                    }
                 }
             }
         }
@@ -88,6 +91,13 @@ const BoardFactory = (() => {
     }
 
     //Game  Object Pulbic Methods.
+
+    function checkWinner () {
+        if ((game[0].mark === game[1].mark)&&(game[1].mark === game[2].mark)&&(game[0].mark !== "")||(game[3].mark === game[4].mark)&&(game[4].mark === game[5].mark)&&(game[3].mark !== "")||(game[6].mark === game[7].mark)&&(game[7].mark === game[8].mark)&&(game[6].mark !== "")||(game[0].mark === game[4].mark)&&(game[4].mark === game[8].mark)&&(game[0].mark !== "")||(game[2].mark === game[4].mark)&&(game[4].mark === game[6].mark)&&(game[2].mark !== "")||(game[0].mark === game[3].mark)&&(game[3].mark === game[6].mark)&&(game[0].mark !== "")||(game[1].mark === game[4].mark)&&(game[4].mark === game[7].mark)&&(game[1].mark !== "")||(game[2].mark === game[5].mark)&&(game[5].mark === game[8].mark)&&(game[2].mark !== "")) {
+            console.log(currentPlayer);
+            resetGame();
+        }
+    }
     
     function setGameType (type){
         if (type == "ai"){
@@ -119,12 +129,14 @@ const BoardFactory = (() => {
         game = [];
         board.innerHTML = "";
         populateBoard ();
-    }
+        currentPlayer = players[0];
+    };
+    
+    resetGame();
 
     return {
         setGameType,
         newPlayers,
-        resetGame,
     }
 
 })();
