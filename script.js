@@ -57,39 +57,48 @@ const BoardFactory = (() => {
             }
         }   
 
+        
+
         function setMark (){
             let player1score = document.getElementById("player1score");
             let player2score = document.getElementById("player2score");
+            if(game == 9){
+                if(checkWinner(game,currentPlayer) != 8){
+                    this.mark = "";
+                }
+            }
             if (this.mark == ""){
                 if  (currentPlayer == 2){
                     render(this)
                 } else {
                     this.mark = players[currentPlayer].mark;
-                    if (game.length == 9){
-                        if ((gameType == "ai") && (checkWinner(game,currentPlayer)== 8)){
+                    if ((gameType == "ai") && (checkWinner(game,currentPlayer)== 8)){
+                        currentPlayer = 1;
+                        let index = miniMax(game,0,true).index;
+                        game[index].mark = "O";
+                        currentPlayer = 0;
+                        render(game[index]);
+                    } else {
+                        if (currentPlayer == 0){
                             currentPlayer = 1;
-                            let index = miniMax(game,0,true).index;
-                            game[index].mark = "O";
-                            currentPlayer = 0;
-                            render(game[index]);
                         } else {
-                            if (currentPlayer == 0){
-                                currentPlayer = 1;
-                            } else {
-                                currentPlayer = 0;
-                            }
+                            currentPlayer = 0;
                         }
-                        if (checkWinner(game,currentPlayer)==-1){
-                            players[1].plusScore();
-                            player2score.innerText = `${players[1].score}`;
-                            resetGame();
-                        } else if (checkWinner(game,currentPlayer)==1){
-                            players[0].plusScore();
-                            player1score.innerText = `${players[0].score}`;
-                            resetGame();
-                        }else if (checkWinner(game,currentPlayer)==0){
-                            resetGame();
-                        }
+                    }
+                    
+                    if (checkWinner(game,currentPlayer)==-1){
+                        players[1].plusScore();
+                        player2score.innerText = `${players[1].score}`;
+                        resetGame();
+                        return;
+                    } else if (checkWinner(game,currentPlayer)==1){
+                        players[0].plusScore();
+                        player1score.innerText = `${players[0].score}`;
+                        resetGame();
+                        return;
+                    }else if (checkWinner(game,currentPlayer)==0){
+                        resetGame();
+                        return;
                     }
                     render(this);
                 }
@@ -114,9 +123,16 @@ const BoardFactory = (() => {
 
     function resetGame () {
         game = [];
+        lastPlayer = currentPlayer;
+        currentPlayer = 2;
         board.innerHTML = "";
         populateBoard ();
-        currentPlayer = 0;
+        if (lastPlayer == 2){
+            currentPlayer = 0;
+        } else {
+            currentPlayer = lastPlayer;
+        }
+        
         board.className = `player${currentPlayer}`;
     };
 
