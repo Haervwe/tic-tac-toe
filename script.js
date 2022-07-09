@@ -7,7 +7,7 @@ const BoardFactory = (() => {
     var players = [];
     var currentPlayer = 2;
     var gameType;
-
+    var mark = "";
     //player factory object
 
     const PlayerFactory = (name,type) =>{
@@ -57,7 +57,6 @@ const BoardFactory = (() => {
         }   
 
         function setMark (){
-            console.log(currentPlayer);
             if (this.mark == ""){
                 if  (currentPlayer == 2){
                     render(this)
@@ -65,11 +64,27 @@ const BoardFactory = (() => {
                     this.mark = players[currentPlayer].mark;
                     render(this);
                     if (game.length == 9){
-                        checkWinner();
-                        if (currentPlayer == 0){
+                        if ((gameType == "ai") && (checkWinner(game,currentPlayer)== 8)){
                             currentPlayer = 1;
-                        } else {
+                            let index = miniMax(game,0,true).index;
+                            game[index].mark = "O";
+                            render(game[index]);
                             currentPlayer = 0;
+                        } else {
+                            if (currentPlayer == 0){
+                                currentPlayer = 1;
+                            } else {
+                                currentPlayer = 0;
+                            }
+                        }
+                        if (checkWinner(game,currentPlayer)==-1){
+                            players[1].plusScore();
+                            resetGame();
+                        } else if (checkWinner(game,currentPlayer)==1){
+                            players[0].plusScore();
+                            resetGame();
+                        }else if (checkWinner(game,currentPlayer)==0){
+                            resetGame();
                         }
                     }
                 }
@@ -77,11 +92,11 @@ const BoardFactory = (() => {
         }
         return {
         id,
-        mark: "",
+        mark,
         setMark,
         };
     }
-
+    
     //Game  Object Private Methods.
 
     function populateBoard (){
@@ -98,24 +113,99 @@ const BoardFactory = (() => {
         currentPlayer = 0;
     };
 
+
+    function miniMax (gameTemp,depth, isMaximizer){
+
+        var gameCopy = [{mark: gameTemp[0].mark}, {mark: gameTemp[1].mark}, {mark: gameTemp[2].mark}, {mark:  gameTemp[3].mark}, {mark:  gameTemp[4].mark}, {mark:  gameTemp[5].mark}, {mark:  gameTemp[6].mark}, {mark:  gameTemp[7].mark}, {mark:  gameTemp[8].mark},];
+        let current;
+        let moves = [];
+
+        if (isMaximizer == true){
+            current = 0;
+        } else if (isMaximizer == false){
+            current = 1;
+        }
+        if (checkWinner(gameCopy, current) == 1){
+            return {value: 1/depth};
+        }
+        if (checkWinner(gameCopy, current) == -1){
+            return {value: -1/depth};
+        }
+        if (checkWinner(gameCopy, current) == 0){
+            return {value: 0};
+        }
+        
+        if (isMaximizer == true){
+            for (let i = 0; i < 9; i++){
+                if (gameCopy[i].mark == ""){
+                    gameCopy[i].mark = "O";
+                    let move = miniMax(gameCopy, depth +1, false);
+                    gameCopy[i].mark = "";
+                    moves.push({index: i, value: move.value});
+                }
+            }
+        }
+
+        if(isMaximizer == false){
+            for (let i = 0; i < 9; i++){
+                if (gameCopy[i].mark == ""){
+                    gameCopy[i].mark = "X";
+                    let move = miniMax(gameCopy, depth +1,true);
+                    gameCopy[i].mark = "";
+                    moves.push({index: i, value: move.value});
+                }
+            }
+        }
+        
+        if (isMaximizer == true){
+            let index = 0;
+            let value = -10;
+            for (let i = 0 ; i < moves.length; i++){
+                if  (moves[i].value > value){
+                    index = moves[i].index;
+                    value = moves[i].value;
+                }
+            }
+            if (depth == 0){
+                console.log(moves);
+            }
+            return {index: index ,value: value};
+        }
+        if (isMaximizer == false){
+            let index = 0;
+            let value = 10;
+            for (let i = 0 ; i < moves.length; i++){
+                if  (moves[i].value < value){
+                    index = moves[i].index;
+                    value = moves[i].value;
+                }
+            }
+            
+            return {index: index ,value: value};
+        }
+    }
+
     //Game  Object Pulbic Methods.
 
-    function checkWinner () {
+    function checkWinner (game,currentP) {
 
         //checks if theres a winner
 
         if ((game[0].mark === game[1].mark)&&(game[1].mark === game[2].mark)&&(game[0].mark !== "")||(game[3].mark === game[4].mark)&&(game[4].mark === game[5].mark)&&(game[3].mark !== "")||(game[6].mark === game[7].mark)&&(game[7].mark === game[8].mark)&&(game[6].mark !== "")||(game[0].mark === game[4].mark)&&(game[4].mark === game[8].mark)&&(game[0].mark !== "")||(game[2].mark === game[4].mark)&&(game[4].mark === game[6].mark)&&(game[2].mark !== "")||(game[0].mark === game[3].mark)&&(game[3].mark === game[6].mark)&&(game[0].mark !== "")||(game[1].mark === game[4].mark)&&(game[4].mark === game[7].mark)&&(game[1].mark !== "")||(game[2].mark === game[5].mark)&&(game[5].mark === game[8].mark)&&(game[2].mark !== "")) {
-            players[currentPlayer].plusScore();
-            console.log(players[currentPlayer]);
-            resetGame();
+            if (currentP == 0) {
+                return -1;
+            }
+            if (currentP == 1){
+                return 1;
+            }
         }
 
         //checks for a tie
 
         if ((game[0].mark !== "")&&(game[1].mark !== "")&&(game[2].mark !== "")&&(game[3].mark !== "")&&(game[4].mark !== "")&&(game[5].mark !== "")&&(game[6].mark !== "")&&(game[7].mark !== "")&&(game[8].mark !== "")){
-            console.log("no winner");
-            resetGame();
+            return 0;
         }
+        return 8;
     }
     
     function setGameType (type){
