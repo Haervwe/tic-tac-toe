@@ -1,16 +1,27 @@
+*{
+    font-family: 'Arima', cursive;
+}
+
 body{
     margin: 0px;
     padding: 0px;
     height: 100vh;
     width: 100vw;
+    color: rgb(60, 54, 42);
+    background-color: rgb(200, 226, 255);
+    
+
 }
 
 .container {
     display: grid;
     grid-template-rows: minmax(10px,8vh) minmax(200px,84vh) minmax(10px,8vh);
     .header {
+        background: rgb(60,54,42);
+        background: linear-gradient(180deg, rgba(60,54,42,1) 0%, rgba(200, 226, 255,1) 100%);
         h1{
             text-align: center;
+            text-shadow: 2px 2px white;
          }
         grid-row: 1;
     }
@@ -31,16 +42,22 @@ body{
             }
         }
         p{
+            font-size: 17px;
+            font-weight: bold;
             text-align: center;
+            text-shadow: 1px 1px white;
          }
         grid-row: 2;
     }
     .footer {
+        background: rgb(60,54,42);
+        background: linear-gradient(0deg, rgba(60,54,42,1) 0%, rgba(200, 226, 255,1) 100%);
         justify-items: center;
         align-content: center;
         grid-row: 3;
         h4{
             text-align: center;
+            text-shadow: 1px 1px white;
          }
     }
 }
@@ -73,33 +90,33 @@ body{
             border: 2px black solid;
         }
         .X{
-            background-color: red;
+            background-color: rgb(255, 0, 105);
         }
         .O{
-            background-color: blue;
+            background-color: rgb(130, 255, 46);
         }
 
     }
     .player0{
         .square:hover {
-            background-color: rgba(233, 1, 1, 0.719);
+            background-color: rgba(255, 0, 105, 0.719);
         }
         .O:hover {
-            background-color: blue;
+            background-color: rgb(255, 0, 105);
         }
         .X:hover {
-            background-color: red;
+            background-color: rgb(130, 255, 46);
         }
     }
     .player1{
         .square:hover {
-            background-color: rgba(1, 1, 233, 0.719);
+            background-color: rgba(130, 255, 46, 0.719);
         }
         .O:hover {
-            background-color: blue;
+            background-color: rgb(255, 0, 105);
         }
         .X:hover {
-            background-color: red;
+            background-color: rgb(130, 255, 46);
         }
     }
 }

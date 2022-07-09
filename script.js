@@ -89,13 +89,13 @@ const BoardFactory = (() => {
                     console.log(currentPlayer);
                     if (checkWinner(game,currentPlayer)==-1){
                         players[1].plusScore();
-                        player2score.innerText = `${players[1].score}`;
+                        player2score.innerText = `Score: ${players[1].score}`;
                         currentPlayer = 0;
                         resetGame();
                         return;
                     } else if (checkWinner(game,currentPlayer)==1){
                         players[0].plusScore();
-                        player1score.innerText = `${players[0].score}`;
+                        player1score.innerText = `Score: ${players[0].score}`;
                         currentPlayer = 1;
                         resetGame();
                         return;

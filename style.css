@@ -1,8 +1,14 @@
+* {
+  font-family: "Arima", cursive;
+}
+
 body {
   margin: 0px;
   padding: 0px;
   height: 100vh;
   width: 100vw;
+  color: rgb(60, 54, 42);
+  background-color: rgb(200, 226, 255);
 }
 
 .container {
@@ -10,10 +16,13 @@ body {
   grid-template-rows: minmax(10px, 8vh) minmax(200px, 84vh) minmax(10px, 8vh);
 }
 .container .header {
+  background: rgb(60, 54, 42);
+  background: linear-gradient(180deg, rgb(60, 54, 42) 0%, rgb(200, 226, 255) 100%);
   grid-row: 1;
 }
 .container .header h1 {
   text-align: center;
+  text-shadow: 2px 2px white;
 }
 .container .playerSelection {
   justify-items: center;
@@ -32,15 +41,21 @@ body {
   text-align: center;
 }
 .container .gameBoard p {
+  font-size: 17px;
+  font-weight: bold;
   text-align: center;
+  text-shadow: 1px 1px white;
 }
 .container .footer {
+  background: rgb(60, 54, 42);
+  background: linear-gradient(0deg, rgb(60, 54, 42) 0%, rgb(200, 226, 255) 100%);
   justify-items: center;
   align-content: center;
   grid-row: 3;
 }
 .container .footer h4 {
   text-align: center;
+  text-shadow: 1px 1px white;
 }
 
 .playerSelection {
@@ -72,26 +87,26 @@ body {
   border: 2px black solid;
 }
 .gameBoard #board .X {
-  background-color: red;
+  background-color: rgb(255, 0, 105);
 }
 .gameBoard #board .O {
-  background-color: blue;
+  background-color: rgb(130, 255, 46);
 }
 .gameBoard .player0 .square:hover {
-  background-color: rgba(233, 1, 1, 0.719);
+  background-color: rgba(255, 0, 105, 0.719);
 }
 .gameBoard .player0 .O:hover {
-  background-color: blue;
+  background-color: rgb(255, 0, 105);
 }
 .gameBoard .player0 .X:hover {
-  background-color: red;
+  background-color: rgb(130, 255, 46);
 }
 .gameBoard .player1 .square:hover {
-  background-color: rgba(1, 1, 233, 0.719);
+  background-color: rgba(130, 255, 46, 0.719);
 }
 .gameBoard .player1 .O:hover {
-  background-color: blue;
+  background-color: rgb(255, 0, 105);
 }
 .gameBoard .player1 .X:hover {
-  background-color: red;
+  background-color: rgb(130, 255, 46);
 }/*# sourceMappingURL=style.css.map */
