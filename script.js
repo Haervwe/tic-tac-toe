@@ -52,7 +52,8 @@ const BoardFactory = (() => {
                 board.appendChild(square);
                     
             } else {
-                current.innerText = `${a.mark}`;
+                current.className = `square ${a.mark}`;
+                board.className = `player${currentPlayer}`;
             }
         }   
 
@@ -64,14 +65,13 @@ const BoardFactory = (() => {
                     render(this)
                 } else {
                     this.mark = players[currentPlayer].mark;
-                    render(this);
                     if (game.length == 9){
                         if ((gameType == "ai") && (checkWinner(game,currentPlayer)== 8)){
                             currentPlayer = 1;
                             let index = miniMax(game,0,true).index;
                             game[index].mark = "O";
-                            render(game[index]);
                             currentPlayer = 0;
+                            render(game[index]);
                         } else {
                             if (currentPlayer == 0){
                                 currentPlayer = 1;
@@ -91,6 +91,7 @@ const BoardFactory = (() => {
                             resetGame();
                         }
                     }
+                    render(this);
                 }
             }
         }
@@ -116,9 +117,10 @@ const BoardFactory = (() => {
         board.innerHTML = "";
         populateBoard ();
         currentPlayer = 0;
+        board.className = `player${currentPlayer}`;
     };
 
-    //miniMax Algorith function for ai play
+    //miniMax algorith function for ai play
 
     function miniMax (gameTemp,depth, isMaximizer){
 
@@ -186,12 +188,9 @@ const BoardFactory = (() => {
                     value = moves[i].value;
                 }
             }
-            
             return {index: index ,value: value};
         }
     }
-
-    //Game  Object Pulbic Methods.
 
     function checkWinner (game,currentP) {
 
@@ -213,6 +212,9 @@ const BoardFactory = (() => {
         }
         return 8;
     }
+
+    //Game  Object Pulbic Methods.
+
     
     function setGameType (type){
         if (type == "ai"){
@@ -269,11 +271,13 @@ function displayOnePlayer () {
 }
 
 function displayGame () {
+    const form = document.getElementById("playerSelection");
     const gameBoard = document.querySelector(".gameBoard");
     const onePName = document.querySelector(".onePName");
     const twoPNames = document.querySelector(".twoPNames");
     gameBoard.style.display = "Grid";
-    onePName.style.display = "none"
-    twoPNames.style.display = "none"
+    onePName.style.display = "none";
+    twoPNames.style.display = "none";
+    form.style.display = "none";
     BoardFactory.newPlayers();
 }

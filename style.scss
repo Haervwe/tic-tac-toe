@@ -1,3 +1,50 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: minmax(10px,8vh) minmax(200px,84vh) minmax(10px,8vh);
+    .header {
+        h1{
+            text-align: center;
+         }
+        grid-row: 1;
+    }
+    .playerSelection {
+        justify-items: center;
+        align-content: center;
+        grid-row: 2;
+        p{
+            text-align: center;
+         }
+    }
+    .gameBoard {
+        justify-items: center;
+        align-content: center;
+        .player{
+            p{
+               text-align: center;
+            }
+        }
+        p{
+            text-align: center;
+         }
+        grid-row: 2;
+    }
+    .footer {
+        justify-items: center;
+        align-content: center;
+        grid-row: 3;
+        h4{
+            text-align: center;
+         }
+    }
+}
+
 .playerSelection {
     display: grid;
     .gameType {
@@ -14,10 +61,46 @@
 
 .gameBoard {
     display: none;
-    .board {
+    justify-items: center;
+    align-content: center;
+    #board {
         display: grid;
-        grid-template-columns: repeat(3,minmax(250px,1fr));
-        grid-template-rows: repeat(3,minmax(250px,1fr));
+        gap: 5px;
+        grid-template-columns: repeat(3,minmax(50px,20vh));
+        grid-template-rows: repeat(3,minmax(50px,20vh));
+        .square {
+            border-radius: 15px;
+            border: 2px black solid;
+        }
+        .X{
+            background-color: red;
+        }
+        .O{
+            background-color: blue;
+        }
+
+    }
+    .player0{
+        .square:hover {
+            background-color: rgba(233, 1, 1, 0.719);
+        }
+        .O:hover {
+            background-color: blue;
+        }
+        .X:hover {
+            background-color: red;
+        }
+    }
+    .player1{
+        .square:hover {
+            background-color: rgba(1, 1, 233, 0.719);
+        }
+        .O:hover {
+            background-color: blue;
+        }
+        .X:hover {
+            background-color: red;
+        }
     }
 }
 

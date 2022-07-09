@@ -1,3 +1,48 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: minmax(10px, 8vh) minmax(200px, 84vh) minmax(10px, 8vh);
+}
+.container .header {
+  grid-row: 1;
+}
+.container .header h1 {
+  text-align: center;
+}
+.container .playerSelection {
+  justify-items: center;
+  align-content: center;
+  grid-row: 2;
+}
+.container .playerSelection p {
+  text-align: center;
+}
+.container .gameBoard {
+  justify-items: center;
+  align-content: center;
+  grid-row: 2;
+}
+.container .gameBoard .player p {
+  text-align: center;
+}
+.container .gameBoard p {
+  text-align: center;
+}
+.container .footer {
+  justify-items: center;
+  align-content: center;
+  grid-row: 3;
+}
+.container .footer h4 {
+  text-align: center;
+}
+
 .playerSelection {
   display: grid;
 }
@@ -13,9 +58,40 @@
 
 .gameBoard {
   display: none;
+  justify-items: center;
+  align-content: center;
 }
-.gameBoard .board {
+.gameBoard #board {
   display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
-  grid-template-rows: repeat(3, minmax(250px, 1fr));
+  gap: 5px;
+  grid-template-columns: repeat(3, minmax(50px, 20vh));
+  grid-template-rows: repeat(3, minmax(50px, 20vh));
+}
+.gameBoard #board .square {
+  border-radius: 15px;
+  border: 2px black solid;
+}
+.gameBoard #board .X {
+  background-color: red;
+}
+.gameBoard #board .O {
+  background-color: blue;
+}
+.gameBoard .player0 .square:hover {
+  background-color: rgba(233, 1, 1, 0.719);
+}
+.gameBoard .player0 .O:hover {
+  background-color: blue;
+}
+.gameBoard .player0 .X:hover {
+  background-color: red;
+}
+.gameBoard .player1 .square:hover {
+  background-color: rgba(1, 1, 233, 0.719);
+}
+.gameBoard .player1 .O:hover {
+  background-color: blue;
+}
+.gameBoard .player1 .X:hover {
+  background-color: red;
 }/*# sourceMappingURL=style.css.map */
