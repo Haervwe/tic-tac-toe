@@ -151,12 +151,14 @@ const BoardFactory = (() => {
         var gameCopy = [{mark: gameTemp[0].mark}, {mark: gameTemp[1].mark}, {mark: gameTemp[2].mark}, {mark:  gameTemp[3].mark}, {mark:  gameTemp[4].mark}, {mark:  gameTemp[5].mark}, {mark:  gameTemp[6].mark}, {mark:  gameTemp[7].mark}, {mark:  gameTemp[8].mark},];
         let current;
         let moves = [];
-
+             //determines current player
         if (isMaximizer == true){
             current = 0;
         } else if (isMaximizer == false){
             current = 1;
         }
+
+            //terminal node check, returns terminar socore value, the depth division isused to represente the amount of moves need to the result of the terminal node can be achieved.
         if (checkWinner(gameCopy, current) == 1){
             return {value: 1/depth};
         }
@@ -166,7 +168,9 @@ const BoardFactory = (() => {
         if (checkWinner(gameCopy, current) == 0){
             return {value: 0};
         }
-        
+
+            //next possible moves evaluator for AI player
+
         if (isMaximizer == true){
             for (let i = 0; i < 9; i++){
                 if (gameCopy[i].mark == ""){
@@ -177,7 +181,7 @@ const BoardFactory = (() => {
                 }
             }
         }
-
+            //next possible moves evaluator for human player
         if(isMaximizer == false){
             for (let i = 0; i < 9; i++){
                 if (gameCopy[i].mark == ""){
@@ -188,7 +192,9 @@ const BoardFactory = (() => {
                 }
             }
         }
-        
+            //next posible value comparison and return the optimal value. it returns an object with the index and value of the best posible move, 
+            //the index is only relevant in depth 0 as it is the final return value of the function in every other iteration the value used for calculations is only the branch terminal score.
+            
         if (isMaximizer == true){
             let index = 0;
             let value = -10;
