@@ -57,6 +57,8 @@ const BoardFactory = (() => {
         }   
 
         function setMark (){
+            let player1score = document.getElementById("player1score");
+            let player2score = document.getElementById("player2score");
             if (this.mark == ""){
                 if  (currentPlayer == 2){
                     render(this)
@@ -79,9 +81,11 @@ const BoardFactory = (() => {
                         }
                         if (checkWinner(game,currentPlayer)==-1){
                             players[1].plusScore();
+                            player2score.innerText = `${players[1].score}`;
                             resetGame();
                         } else if (checkWinner(game,currentPlayer)==1){
                             players[0].plusScore();
+                            player1score.innerText = `${players[0].score}`;
                             resetGame();
                         }else if (checkWinner(game,currentPlayer)==0){
                             resetGame();
@@ -96,8 +100,9 @@ const BoardFactory = (() => {
         setMark,
         };
     }
-    
+
     //Game  Object Private Methods.
+
 
     function populateBoard (){
         for (let i = 0; i < 9; i++){
@@ -113,6 +118,7 @@ const BoardFactory = (() => {
         currentPlayer = 0;
     };
 
+    //miniMax Algorith function for ai play
 
     function miniMax (gameTemp,depth, isMaximizer){
 
