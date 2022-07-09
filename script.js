@@ -68,6 +68,7 @@ const BoardFactory = (() => {
                 }
             }
             if (this.mark == ""){
+                console.log(currentPlayer);
                 if  (currentPlayer == 2){
                     render(this)
                 } else {
@@ -85,18 +86,26 @@ const BoardFactory = (() => {
                             currentPlayer = 0;
                         }
                     }
-                    
+                    console.log(currentPlayer);
                     if (checkWinner(game,currentPlayer)==-1){
                         players[1].plusScore();
                         player2score.innerText = `${players[1].score}`;
+                        currentPlayer = 0;
                         resetGame();
                         return;
                     } else if (checkWinner(game,currentPlayer)==1){
                         players[0].plusScore();
                         player1score.innerText = `${players[0].score}`;
+                        currentPlayer = 1;
                         resetGame();
                         return;
                     }else if (checkWinner(game,currentPlayer)==0){
+                       
+                        if (currentPlayer == 0){
+                            currentPlayer = 1;
+                        } else {
+                            currentPlayer = 0;
+                        } 
                         resetGame();
                         return;
                     }
@@ -132,7 +141,6 @@ const BoardFactory = (() => {
         } else {
             currentPlayer = lastPlayer;
         }
-        
         board.className = `player${currentPlayer}`;
     };
 
