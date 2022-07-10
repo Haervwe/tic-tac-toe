@@ -1,4 +1,3 @@
-
 //game object, (using revealing module pattern)
 
 const BoardFactory = (() => {
@@ -33,8 +32,8 @@ const BoardFactory = (() => {
             score,
             mark,
             plusScore,
-        }
-    }
+        };
+    };
 
     //game board factory object 
 
@@ -48,14 +47,14 @@ const BoardFactory = (() => {
                 square.className = "square";
                 square.innerText = "";
                 a.mark = "";
-                square.onclick = function (){a.setMark()};
+                square.onclick = function (){a.setMark();};
                 board.appendChild(square);
                     
             } else {
                 current.className = `square ${a.mark}`;
                 board.className = `player${currentPlayer}`;
             }
-        }   
+        }
 
         
 
@@ -70,7 +69,7 @@ const BoardFactory = (() => {
             if (this.mark == ""){
                 console.log(currentPlayer);
                 if  (currentPlayer == 2){
-                    render(this)
+                    render(this);
                 } else {
                     this.mark = players[currentPlayer].mark;
                     if ((gameType == "ai") && (checkWinner(game,currentPlayer)== 8)){
@@ -118,7 +117,7 @@ const BoardFactory = (() => {
         mark,
         setMark,
         };
-    }
+    };
 
     //Game  Object Private Methods.
 
@@ -127,13 +126,13 @@ const BoardFactory = (() => {
         for (let i = 0; i < 9; i++){
             game.push(SquareFactory(i));
             game[i].setMark();
-        };
+        }
     }
 
     function resetGame () {
         game = [];
-        lastPlayer = currentPlayer;
         currentPlayer = 2;
+        lastPlayer = currentPlayer;
         board.innerHTML = "";
         populateBoard ();
         if (lastPlayer == 2){
@@ -142,7 +141,7 @@ const BoardFactory = (() => {
             currentPlayer = lastPlayer;
         }
         board.className = `player${currentPlayer}`;
-    };
+    }
 
     //miniMax algorith function for ai play
 
@@ -151,6 +150,7 @@ const BoardFactory = (() => {
         var gameCopy = [{mark: gameTemp[0].mark}, {mark: gameTemp[1].mark}, {mark: gameTemp[2].mark}, {mark:  gameTemp[3].mark}, {mark:  gameTemp[4].mark}, {mark:  gameTemp[5].mark}, {mark:  gameTemp[6].mark}, {mark:  gameTemp[7].mark}, {mark:  gameTemp[8].mark},];
         let current;
         let moves = [];
+
              //determines current player
         if (isMaximizer == true){
             current = 0;
@@ -207,6 +207,10 @@ const BoardFactory = (() => {
             if (depth == 0){
                 console.log(moves);
             }
+            if (depth === 0){
+                console.log(moves);
+                console.log(index);
+            }
             return {index: index ,value: value};
         }
         if (isMaximizer == false){
@@ -260,7 +264,7 @@ const BoardFactory = (() => {
         let player2name = document.getElementById("player2name");
         if (gameType == "ai"){
             players.push(PlayerFactory(`${form.player.value}`,"human"));
-            players.push(PlayerFactory(`AI`,"ai"))
+            players.push(PlayerFactory(`AI`,"ai"));
             
         } else {
             players.push(PlayerFactory(`${form.player1.value}`,"human"));
@@ -277,7 +281,7 @@ const BoardFactory = (() => {
     return {
         setGameType,
         newPlayers,
-    }
+    };
 
 })();
 
@@ -297,7 +301,7 @@ function displayOnePlayer () {
     const gameType = document.querySelector(".gameType");
     const onePName = document.querySelector(".onePName");
     gameType.style.display = "none";
-    onePName.style.display = "grid"
+    onePName.style.display = "grid";
     BoardFactory.setGameType("ai");
 }
 
