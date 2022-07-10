@@ -7,8 +7,8 @@ body {
   padding: 0px;
   height: 100vh;
   width: 100vw;
-  color: rgb(60, 54, 42);
-  background-color: rgb(200, 226, 255);
+  color: rgb(0, 0, 0);
+  background-color: rgb(213, 219, 235);
 }
 
 .container {
@@ -16,8 +16,8 @@ body {
   grid-template-rows: minmax(10px, 8vh) minmax(200px, 84vh) minmax(10px, 8vh);
 }
 .container .header {
-  background: rgb(60, 54, 42);
-  background: linear-gradient(180deg, rgb(60, 54, 42) 0%, rgb(200, 226, 255) 100%);
+  background: rgb(0, 11, 24);
+  background: linear-gradient(180deg, rgb(0, 11, 24) 0%, rgb(213, 219, 235) 100%);
   grid-row: 1;
 }
 .container .header h1 {
@@ -37,8 +37,15 @@ body {
   align-content: center;
   grid-row: 2;
 }
-.container .gameBoard .player p {
+.container .gameBoard .player0 p {
   text-align: center;
+  color: rgb(0, 93, 223);
+  text-shadow: 1px 1px black;
+}
+.container .gameBoard .player1 p {
+  text-align: center;
+  color: rgb(240, 119, 22);
+  text-shadow: 1px 1px black;
 }
 .container .gameBoard p {
   font-size: 17px;
@@ -47,8 +54,8 @@ body {
   text-shadow: 1px 1px white;
 }
 .container .footer {
-  background: rgb(60, 54, 42);
-  background: linear-gradient(0deg, rgb(60, 54, 42) 0%, rgb(200, 226, 255) 100%);
+  background: rgb(0, 11, 24);
+  background: linear-gradient(0deg, rgb(0, 11, 24) 0%, rgb(213, 219, 235) 100%);
   justify-items: center;
   align-content: center;
   grid-row: 3;
@@ -87,26 +94,26 @@ body {
   border: 2px black solid;
 }
 .gameBoard #board .X {
-  background-color: rgb(255, 0, 105);
+  background-color: rgb(0, 93, 223);
 }
 .gameBoard #board .O {
-  background-color: rgb(130, 255, 46);
+  background-color: rgb(240, 119, 22);
 }
 .gameBoard .player0 .square:hover {
-  background-color: rgba(255, 0, 105, 0.719);
+  background-color: rgb(0, 130, 196);
 }
 .gameBoard .player0 .O:hover {
-  background-color: rgb(255, 0, 105);
+  background-color: rgb(0, 93, 223);
 }
 .gameBoard .player0 .X:hover {
-  background-color: rgb(130, 255, 46);
+  background-color: rgb(240, 119, 22);
 }
 .gameBoard .player1 .square:hover {
-  background-color: rgba(130, 255, 46, 0.719);
+  background-color: rgb(238, 127, 27);
 }
 .gameBoard .player1 .O:hover {
-  background-color: rgb(255, 0, 105);
+  background-color: rgb(0, 93, 223);
 }
 .gameBoard .player1 .X:hover {
-  background-color: rgb(130, 255, 46);
+  background-color: rgb(240, 119, 22);
 }/*# sourceMappingURL=style.css.map */
