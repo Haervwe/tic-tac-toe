@@ -1,5 +1,5 @@
 
-//game object, (using reveal module pattern)
+//game object, (using revealing module pattern)
 
 const BoardFactory = (() => {
     var board = document.getElementById("board");
@@ -192,7 +192,7 @@ const BoardFactory = (() => {
                 }
             }
         }
-            //next posible value comparison and return the optimal value. it returns an object with the index and value of the best posible move, 
+            //best posible value comparison  and return the optimal value. it returns an object with the index and value of the best posible move, 
             //the index is only relevant in depth 0 as it is the final return value of the function in every other iteration the value used for calculations is only the branch terminal score.
             
         if (isMaximizer == true){
@@ -280,6 +280,7 @@ const BoardFactory = (() => {
     }
 
 })();
+
 
 
 //functions to change visivility of the player selection menu.
