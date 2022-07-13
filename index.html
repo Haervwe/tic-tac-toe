@@ -19,8 +19,8 @@
         </div>
         <form id="playerSelection" class="playerSelection" action="" method="get">
             <div class="gameType">
-                <button type="button" id="twoPlayers" onclick="displayTwoPlayers()">2 Players</button>
-                <button type="button" id="ai" onclick="displayOnePlayer()">Vs AI</button>
+                <button type="button" id="twoPlayers">2 Players</button>
+                <button type="button" id="ai">Vs AI</button>
             </div>
             <div class="twoPNames">
                 <div class="player1input">
@@ -31,14 +31,14 @@
                     <label for="player2">Player 2 Name:</label>
                     <input type="text" placeholder="Matt" id="player2" name="player2">
                 </div>
-                <button type="button" onclick="displayGame()">Play!</button>  
+                <button type="button" id="startGame">Play!</button>  
             </div>
             <div class="onePName">
                 <div class="playerinput">
                     <label for="player">Player Name:</label>
                     <input type="text" placeholder="John" id="player" name="player">
                 </div>
-                <button type="button" onclick="displayGame()">Play!</button> 
+                <button type="button" id="startGameAi">Play!</button> 
             </div>
         </form>
         <div class="gameBoard">

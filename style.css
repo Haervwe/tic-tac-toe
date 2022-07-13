@@ -16,8 +16,8 @@ body {
   grid-template-rows: minmax(10px, 8vh) minmax(200px, 84vh) minmax(10px, 8vh);
 }
 .container .header {
-  background: rgb(0, 11, 24);
-  background: linear-gradient(180deg, rgb(0, 11, 24) 0%, rgb(213, 219, 235) 100%);
+  background: rgb(0, 23, 51);
+  background: linear-gradient(180deg, rgb(0, 23, 51) 0%, rgb(213, 219, 235) 100%);
   grid-row: 1;
 }
 .container .header h1 {
@@ -54,8 +54,8 @@ body {
   text-shadow: 1px 1px white;
 }
 .container .footer {
-  background: rgb(0, 11, 24);
-  background: linear-gradient(0deg, rgb(0, 11, 24) 0%, rgb(213, 219, 235) 100%);
+  background: rgb(0, 23, 51);
+  background: linear-gradient(0deg, rgb(0, 23, 51) 0%, rgb(213, 219, 235) 100%);
   justify-items: center;
   align-content: center;
   grid-row: 3;

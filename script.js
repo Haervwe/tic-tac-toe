@@ -132,7 +132,7 @@ const BoardFactory = (() => {
     function resetGame () {
         game = [];
         currentPlayer = 2;
-        lastPlayer = currentPlayer;
+        let lastPlayer = currentPlayer;
         board.innerHTML = "";
         populateBoard ();
         if (lastPlayer == 2){
@@ -143,7 +143,7 @@ const BoardFactory = (() => {
         board.className = `player${currentPlayer}`;
     }
 
-    //miniMax algorith function for ai play
+    //miniMax algorithm function for ai play
 
     function miniMax (gameTemp,depth, isMaximizer){
 
@@ -316,3 +316,12 @@ function displayGame () {
     form.style.display = "none";
     BoardFactory.newPlayers();
 }
+
+const twoPlayer = document.getElementById("twoPlayers");
+const ai=  document.getElementById("ai");
+const startGame = document.getElementById("startGame");
+const startGameAi = document.getElementById("startGameAi");
+startGameAi.addEventListener("click",displayGame);
+startGame.addEventListener("click",displayGame);
+ai.addEventListener("click",displayOnePlayer);
+twoPlayer.addEventListener("click",displayTwoPlayers);
