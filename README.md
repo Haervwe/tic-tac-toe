@@ -1,2 +1,2 @@
 # tic-tac-toe
-tic tac toe browser game with two palyer and player vs ia modes
+tic tac toe browser game with two player and player vs ia modes
